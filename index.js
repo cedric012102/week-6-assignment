@@ -7,131 +7,46 @@
 // 26 cards
 create methods for deck like shuffle inside deck class. */
 
-let playerATurns =[];
-let playerBTurns = [];
+let player1 = []
 
-let playerAScore = 26;
-let playerBScore = 26;
+let player2 = []
 
-function shuffle() {
-  var playerACard = Math.floor(Math.random() * 13 + 2);
-  playerATurns.push(playerACard);
-  console.log(playerATurns);
+player1points = 0
+player2points = 0
 
-  var playerACardOutput = "";
-  if(playerACard === 11) {
-    playerACardOutput = "J";
+let deck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13,14,14,14,14]
+
+for(let i = 0; i < 52; i++){
+  let randomCard = deck.splice(Math.floor(Math.random() * deck.length), 1)
+  if(i % 2 == 0) {
+    player1.push(randomCard)
   } else {
-    if(playerACardOutput === 12) {
-      playerACardOutput = "Q";
-    } else {
-      if(playerACardOutput === 13) {
-        playerACardOutput = "K";
-      } else {
-        if(playerACardOutput === 14) {
-          playerACardOutput = "A";
-        } else {
-          playerACardOutput = playerACard;
-        }
-      }
-    }
+    player2.push(randomCard)
   }
-  
-  var playerBCard = Math.floor(Math.random() * 13 + 2);
-  playerBTurns.push(playerBCard);
-  console.log(playerBTurns);
-
-  var playerBCardOutput = "";
-  if(playerBCard === 11) {
-    playerBCardOutput = "J";
-  } else {
-    if(playerBCardOutput === 12) {
-      playerBCardOutput = "Q";
-    } else {
-      if(playerBCardOutput === 13) {
-        playerBCardOutput = "K";
-      } else {
-        if(playerBCardOutput === 14) {
-          playerBCardOutput = "A";
-        } else {
-          playerBCardOutput = playerBCard;
-        }
-      }
-    }
-  }
-  
-  //Chars
-  var playerBChar = Math.floor(Math.random() * 4 + 1);
-  console.log("playerBChar " + playerBChar);
-
-  switch(playerBChar) {
-    case 1:
-        playerBChar = "&hearts;";
-    break;
-    case 2:
-        playerBChar = "&spades;"; 
-    break;
-    case 3:
-        playerBChar = "&diamonds;";
-    break;
-    case 4:
-        playerBChar = "&clubs;";
-    break;
-  }
-  
-  //Scores
-  if (playerAcard === playerBCard) {
-    ifequal();
-  } else {
-    if(playerACard > playerBCard) {
-      playerAScore++;
-      playerBScore--;
-    } else {
-      if(playerBCard > playerACard) {
-        playerBScore++;
-        playerAScore--;
-      }
-    }
-  }
-  
-  console.log("player a score: " + playerAScore);
-  console.log("player b score: " + playerBScore);
-
 }
 
-function ifequal() {
-   var playerACard = Math.floor(Math.random() * 13 + 2);
-  playerATurns.push(playerACard);
-  console.log(playerATurns);
+console.log(player1);
+console.log(player2);
 
-  var playerBCard = Math.floor(Math.random() * 13 + 2);
-  playerBTurns.push(playerBCard);
-  console.log(playerBTurns);
-
-  if(playerACard === playerBCard) {
-    ifequal();
+for(let i = 0; i < 26; i++) {
+  if(player1[i] > player2[i]) {
+    player1points++
+    console.log('Player1 won!', player1[i] + ' is more than ' + player2[i]);
+  } else if (player2[i] > player1[i]) {
+    player2points++
+    console.log('Player2 won!', player2[i] + ' is more than ' + player1[i])
   } else {
-    if(playerACard > playerBCard) {
-      playerAScore = playerAScore + 4;
-      playerBScore = playerBScore - 4;
-    } else {
-      if(playerBCard > playerACard) {
-        playerBScore = playerBScore + 4;
-        playerAScore = playerAScore - 4;
-      }
-    }
+    console.log('Tie!')
   }
-
 }
 
-function checkingScores() {
-  if(playerAScore <= 0) {
-    playerAScore = 0;
-    alert("Player B Win!");
-  } else {
-    if(playerBScore <= 0) {
-      playerBScore = 0;
-      alert("Player A Win!");
-    }
-  }
+console.log("Player 1 won" + ' ' + player1points + ' ' + "times.");
+console.log("Player 2 won" + ' ' + player2points + ' ' + "times.");
+
+if(player1points > player2points) {
+  alert("Player 1 wins the WAR!");
+} else if (player2points > player1points) {
+  alert("Player 2 wins the WAR!")
+} else {
+  alert("It's a tie!")
 }
