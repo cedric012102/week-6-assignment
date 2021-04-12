@@ -24,15 +24,17 @@ console.log(shuffleAndDeal(deck));
 console.log(player1);
 console.log(player2);
 
-function gamePlay(deck) {
 
-for(let i = 0; i < 26; i++) {
+
+function gamePlay(deck) {
+  
+  for(let i = 0; i < 26; i++) {
   if(player1[i] > player2[i]) {
     player1points++
     console.log('Player1 won!', player1[i] + ' is more than ' + player2[i]);
   } else if (player2[i] > player1[i]) {
     player2points++
-    console.log('Player2 won!', player2[i] + ' is more than ' + player1[i])
+    console.log('Player2 won!', player2[i] + ' is more than ' + player1[i]);
   } else {
     console.log('Tie!')
     }
